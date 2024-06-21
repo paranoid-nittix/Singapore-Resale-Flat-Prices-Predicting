@@ -130,6 +130,8 @@ ENV/
 env.bak/
 venv.bak/
 Singapore/
+singapore/
+
 
 # Spyder project settings
 .spyderproject
