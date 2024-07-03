@@ -15,6 +15,5 @@ colorama
 stats
 statsmodels
 Pillow
-WordCloud
-collections
+wordCloud
 mlflow
