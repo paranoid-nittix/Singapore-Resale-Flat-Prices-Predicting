@@ -2,7 +2,7 @@
     "editor.fontFamily": "'Droid Sans Mono', 'Berlin Sans FB', monospace",
     "workbench.colorTheme": "Default Dark Modern",
     "python.createEnvironment.contentButton": "show",
-    "editor.fontSize": 16,
+    "editor.fontSize": 14,
     "workbench.colorCustomizations": {
 
     },

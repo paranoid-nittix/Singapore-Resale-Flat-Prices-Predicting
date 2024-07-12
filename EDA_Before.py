@@ -1,3 +1,28 @@
+import pandas as pd
+pd.set_option("display.precision", 4)
+pd.set_option('display.float_format', '{:.4f}'.format)
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.stats import pearsonr,kstest, norm, skew,kurtosis, boxcox
+from statsmodels.formula.api import ols
+import statsmodels.api as sm
+import scipy.stats as stats
+from wordcloud import WordCloud, STOPWORDS
+from collections import Counter
+import pickle
+
+sns.set_theme(context='notebook', style='white', palette='dark', font='sans-serif', font_scale=1, color_codes=True, rc=None)
+sns.set_style({'axes.facecolor': 'white','axes.edgecolor': 'white'})
+
+color_good = '\033[32m'   # Dark Green for near-zero skew
+color_okay = '\033[92m'   # Light Green for slightly positive or slightly negative skew
+color_bad = '\033[91m'    # Maroon for significant skew
+color_neutral = '\033[0m' # Reset color
+
+
 
 def univar_num(df, col):
     plt.figure(figsize=(16, 8))
