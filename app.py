@@ -129,9 +129,10 @@ if selected == "Genie":
     town_option = ['Tampines',  'Yishun',  'Jurong West',  'Bedok',  'Woodlands',  'Ang Mo Kio',  'Hougang',  'Bukit Batok',  'Choa Chu Kang',  'Bukit Merah',  'Pasir Ris',  'Sengkang',  'Toa Payoh',  'Queenstown',  'Geylang',  'Clementi',  'Bukit Panjang',  'Kallang/Whampoa',  'Jurong East',  'Serangoon',  'Bishan',  'Punggol',  'Sembawang',  'Marine Parade',  'Central Area',  'Bukit Timah',  'Lim Chu Kang']
     flat_type_option = ['4 Room',  '3 Room',  '5 Room',  'Executive',  '2 Room',  '1 Room',  'Multi Generation']
     flat_model_option =['Model A',  'Improved',  'New Generation',  'Simplified',  'Premium Apartment',  'Standard',  'Apartment',  'Maisonette',  'Model A2',  'Dbss',  'Model A-Maisonette',  'Adjoined Flat',  'Terrace',  'Multi Generation',  'Type S1',  'Type S2',  '2-Room',  'Improved-Maisonette',  'Premium Apartment Loft',  'Premium Maisonette',  '3Gen']
-    lease_year_option =[year for year in range(1910, date.today().year + 1)]
-    floor_option = [number for number in range(1,7)]
-    floor_no_option = [number for number in range(0,52,3)]
+    lease_year_option ={1966,  1967,  1968,  1969,  1970,  1971,  1972,  1973,  1974,  1975,  1976,  1977,  1978,  1979,  1980,  1981,  1982,  1983,  1984,  1985,  1986,  1987,  1988,  1989,  1990,  1991,  1992,  1993,  1994,  1995,  1996,  1997,  1998,  1999,  2000,  2001,  2002,  2003,  2004,  2005,  2006,  2007,  2008,  2009,  2010,  2011,  2012,  2013,  2014,  2015,  2016,  2017,  2018,  2019,  2020}
+    floor_option = [3,5]
+    floor_no_option = None
+    
 
     col1, col, col2 = st.columns([2,.5,2])
 
@@ -146,9 +147,12 @@ if selected == "Genie":
 
         floor_area = st.slider('Floor Area SQM:', min_value=20, max_value=500, value=65,step=15, help='Total Estimated space measured in square meters. Minimum value 20 sqm and maximum is 500 sqm.',)
         floor = st.selectbox('Select number of floors:', floor_option, index=None, help="Estimated number of floors.", placeholder="Estimated number of floors.")
-        floor_level = st.selectbox('Select floor level: ', floor_no_option, index=None, help="Estimated range of floors.", placeholder="Estimated range of floors.")
+        if floor ==3:
+            floor_no_option = [number for number in range(3,52,3)]
+        else:
+            floor_no_option = [number for number in range(5,52,5)]
+        floor_level = st.selectbox('Select top floor level: ', floor_no_option, index=None, help="Estimated range of floors.", placeholder="Estimated range of floors.")
     
-        
         st.write(' ')
         st.write(' ')
         button = st.button('Predict Flat Price!')
@@ -161,7 +165,7 @@ if selected == "Genie":
     flat_type_mapping = {'1 Room': 1, '2 Room': 2, '3 Room': 3, '4 Room': 4, '5 Room': 5, 'Executive': 6, 'Multi Generation': 7}
     flat_model_mapping={'New Generation': 1, 'Standard': 2, 'Simplified': 3, 'Model A2': 4, '2-Room': 5, 'Model A': 6, 'Improved': 7, 'Improved-Maisonette': 8, 'Model A-Maisonette': 9, 'Premium Apartment': 10, 'Adjoined Flat': 11, 'Maisonette': 12, 'Apartment': 13, 'Terrace': 14, 'Multi Generation': 15, 'Premium Maisonette': 16, '3Gen': 17, 'Dbss': 18, 'Premium Apartment Loft': 19, 'Type S1': 20, 'Type S2': 21}
     lease_year_mapping={1969: 1, 1971: 2, 1967: 3, 1968: 4, 1973: 5, 1970: 6, 1972: 7, 1974: 8, 1977: 9, 1980: 10, 1983: 11, 1975: 12, 1981: 13, 1976: 14, 1978: 15, 1979: 16, 1966: 17, 1982: 18, 1985: 19, 1984: 20, 1986: 21, 1987: 22, 1988: 23, 1990: 24, 1989: 25, 1991: 26, 1997: 27, 1998: 28, 1996: 29, 1999: 30, 1994: 31, 1993: 32, 2000: 33, 1995: 34, 1992: 35, 2001: 36, 2002: 37, 2003: 38, 2004: 39, 2012: 40, 2014: 41, 2015: 42, 2005: 43, 2007: 44, 2010: 45, 2013: 46, 2008: 47, 2016: 48, 2009: 49, 2017: 50, 2018: 51, 2019: 52, 2006: 53, 2020: 54, 2011: 55}
-    floor_mapping={1:0,2:.5,3: 1,4:1.5, 5: 2,6:2.5}
+    # floor_mapping={1:0,2:.5,3: 1,4:1.5, 5: 2,6:2.5}
     floor_level_mapping={3: 1, 6: 2, 9: 3, 12: 4, 15: 5, 5: 6, 18: 7, 10: 8, 21: 9, 24: 10, 20: 11, 27: 12, 25: 13, 35: 14, 40: 15, 30: 16, 33: 17, 36: 18, 39: 19, 42: 20, 45: 21, 48: 22, 51: 23}
     remaining_lease_year_mapping = {81: 1, 82: 2, 83: 3, 80: 4, 79: 5, 84: 6, 78: 7, 85: 8, 77: 9, 76: 10, 86: 11, 75: 12, 87: 13, 88: 14, 48: 15, 74: 16, 89: 17, 49: 18, 90: 19, 47: 20, 72: 21, 73: 22, 71: 23, 45: 24, 46: 25, 70: 26, 91: 27, 44: 28, 43: 29, 50: 30, 69: 31, 92: 32, 93: 33, 68: 34, 41: 35, 42: 36, 51: 37, 67: 38, 96: 39, 52: 40, 58: 41, 66: 42, 94: 43, 59: 44, 95: 45, 57: 46, 100: 47, 65: 48, 101: 49, 53: 50, 56: 51, 64: 52, 54: 53, 55: 54, 98: 55, 60: 56, 63: 57, 62: 58, 61: 59, 97: 60, 99: 61}
 
@@ -178,7 +182,7 @@ if selected == "Genie":
     flat_type=flat_type_mapping[flat_type] if flat_type is not None else None
     flat_model=flat_model_mapping[flat_model] if flat_model is not None else None
     lease_year=lease_year_mapping[lease_year] if lease_year is not None else None
-    floor=floor_mapping[floor] if floor is not None else None
+    # floor=floor_mapping[floor] if floor is not None else None
     floor_level=floor_level_mapping[floor_level] if floor_level is not None else None
     remaining_lease_year=remaining_lease_year_mapping[remaining_lease_year] if remaining_lease_year is not None else None
     
